@@ -1,0 +1,21 @@
+module Stock
+{
+	// Requested stock does not exist.
+	exception InvalidStockException {};
+	
+	struct StockQuote{
+		long id;
+		string name;
+		double price;
+	};
+	
+	interface Quoter {
+	
+		// Two-way operations to retrieve current stock value.
+		StockQuote getQuoteByName (in string stockName) 
+			raises (InvalidStockException);
+			
+		StockQuote getQuoteById (in long stockId) 
+			raises (InvalidStockException);
+	};
+};
