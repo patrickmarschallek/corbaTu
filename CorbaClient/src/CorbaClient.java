@@ -32,7 +32,7 @@ public class CorbaClient {
 			} else if (args[1].equals("c")) {
 				request = new OneWayRequest(quoterRef);
 			} else if (args[1].equals("d")) {
-				request = new AMIRequest(quoterRef);
+				request = new AMIRequest(quoterRef, orb);
 			}
 
 			printQuote(request.getStockQuote(args[0]));
