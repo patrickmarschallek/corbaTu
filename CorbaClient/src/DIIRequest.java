@@ -54,9 +54,8 @@ public class DIIRequest extends CorbaClientRequest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		r.return_value().extract_Streamable();
-		System.out.println(quoteHolder._type());
-		System.out.println(quoteHolder.value);
+
+		quoteHolder._read(r.return_value().create_input_stream());
 
 		return quoteHolder.value;
 	}

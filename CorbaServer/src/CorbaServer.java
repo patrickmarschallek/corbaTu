@@ -74,7 +74,9 @@ class QuoterServant extends QuoterPOA {
 	@Override
 	public StockQuote getQuoteByName(String stockName)
 			throws InvalidStockException {
+		System.out.println("getQuoteByName " + stockName);
 		for (StockQuote q : quotes) {
+			System.out.println("returning quote");
 			if (q.name.equals(stockName)) {
 				return q;
 			}

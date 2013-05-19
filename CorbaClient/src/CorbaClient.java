@@ -35,7 +35,7 @@ public class CorbaClient {
 				request = new AMIRequest(quoterRef);
 			}
 
-			request.getStockQuote(args[0]);
+			printQuote(request.getStockQuote(args[0]));
 
 		} catch (Exception e) {
 			System.out.println("ERROR : " + e);
