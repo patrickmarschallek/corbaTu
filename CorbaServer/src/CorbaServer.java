@@ -75,7 +75,7 @@ public class CorbaServer {
 			e.printStackTrace(System.out);
 		}
 
-		System.out.println("HelloServer Exiting ...");
+		System.out.println("QuoterServer Exiting ...");
 
 	}
 }
@@ -149,6 +149,7 @@ class QuoterServant extends QuoterPOA {
 				if (q.name.equals(stockName)) {
 					System.out.println("returning quote");
 					handler.push(q);
+					handler._release();
 				}
 			}
 		}

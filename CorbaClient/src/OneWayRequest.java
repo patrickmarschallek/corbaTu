@@ -23,7 +23,15 @@ public class OneWayRequest extends CorbaClientRequest {
 
 	@Override
 	protected StockQuote getQuoteById(int id) {
-		return null;
+		try {
+			notifyQuoterRef.register_callback_id(id, callback);
+		} catch (InvalidStockException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Waiting for response...");
+		orb.run();
+		return oneWayResult;
 	}
 
 	@Override

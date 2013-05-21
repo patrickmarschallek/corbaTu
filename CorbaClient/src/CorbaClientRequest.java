@@ -1,3 +1,4 @@
+import Stock.Notifying_Quoter;
 import Stock.Quoter;
 import Stock.StockQuote;
 
@@ -5,7 +6,7 @@ public abstract class CorbaClientRequest {
 	protected Quoter mQuoter;
 
 	public CorbaClientRequest(Quoter quoter) {
-		mQuoter = quoter;
+		this.mQuoter = quoter;
 	}
 
 	public StockQuote getStockQuote(String nameOrId) {
