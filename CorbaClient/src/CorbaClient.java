@@ -12,6 +12,9 @@ import Stock.QuoterHelper;
 import Stock.StockQuote;
 
 public class CorbaClient {
+
+	private static StockQuote stockQuote;
+
 	public static void main(String args[]) {
 		try {
 
@@ -26,7 +29,7 @@ public class CorbaClient {
 			NameComponent nc = new NameComponent("Quoter", "");
 			NameComponent path[] = { nc };
 			Quoter quoterRef = QuoterHelper.narrow(ncRef.resolve(path));
-
+			stockQuote = null;
 			CorbaClientRequest request = new SIIRequest(quoterRef);
 
 			if (args[1].equals("b")) {
@@ -41,8 +44,8 @@ public class CorbaClient {
 			} else if (args[1].equals("d")) {
 				request = new AMIRequest(quoterRef, orb);
 			}
-
-			printQuote(request.getStockQuote(args[0]));
+			stockQuote = request.getStockQuote(args[0]);
+			printQuote(stockQuote);
 
 		} catch (Exception e) {
 			System.out.println("ERROR : " + e);
@@ -56,4 +59,6 @@ public class CorbaClient {
 		System.out.println("\tName: " + quote.name);
 		System.out.println("\tPrice: " + quote.price);
 	}
+	
+	public static StockQuote getStockQuote(){ return stockQuote; }
 }
