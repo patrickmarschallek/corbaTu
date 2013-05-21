@@ -160,6 +160,26 @@ class QuoterServant extends QuoterPOA {
 			
 		}
 		
+		@Override
+		public void register_callback_id(int stockId, CallbackHandler handler)
+				throws InvalidStockException {
+			System.out.println("getQuoteById " + stockId);
+			for (StockQuote q : quotes) {
+				if (q.id == stockId) {
+					System.out.println("returning quote");
+					handler.push(q);
+				}
+			}
+			
+		}
+
+		@Override
+		public void unregister_callback_id(int stockId, CallbackHandler handler)
+				throws InvalidStockException {
+				shutdown();
+			
+		}
+		
 	    // implement shutdown() method
 		public void shutdown() {
 			orb.shutdown(false);

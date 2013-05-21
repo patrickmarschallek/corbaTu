@@ -5,7 +5,7 @@ package Stock;
  * Generated from IDL interface "AMI_Notifying_QuoterHandler".
  *
  * @author JacORB IDL compiler V 3.2, 07-Dec-2012
- * @version generated at May 21, 2013 8:33:43 PM
+ * @version generated at May 21, 2013 9:29:04 PM
  */
 
 public abstract class AMI_Notifying_QuoterHandlerPOA
@@ -18,7 +18,11 @@ public abstract class AMI_Notifying_QuoterHandlerPOA
 		m_opsHash.put ( "register_callback_name", Integer.valueOf(0));
 		m_opsHash.put ( "register_callback_name_excep", Integer.valueOf(1));
 		m_opsHash.put ( "unregister_callback_name_excep", Integer.valueOf(2));
-		m_opsHash.put ( "unregister_callback_name", Integer.valueOf(3));
+		m_opsHash.put ( "unregister_callback_id", Integer.valueOf(3));
+		m_opsHash.put ( "register_callback_id_excep", Integer.valueOf(4));
+		m_opsHash.put ( "register_callback_id", Integer.valueOf(5));
+		m_opsHash.put ( "unregister_callback_id_excep", Integer.valueOf(6));
+		m_opsHash.put ( "unregister_callback_name", Integer.valueOf(7));
 	}
 	private String[] ids = {"IDL:Stock/AMI_Notifying_QuoterHandler:1.0","IDL:omg.org/Messaging/ReplyHandler:1.0"};
 	public Stock.AMI_Notifying_QuoterHandler _this()
@@ -64,7 +68,33 @@ public abstract class AMI_Notifying_QuoterHandlerPOA
 				unregister_callback_name_excep(_arg0);
 				break;
 			}
-			case 3: // unregister_callback_name
+			case 3: // unregister_callback_id
+			{
+				_out = handler.createReply();
+				unregister_callback_id();
+				break;
+			}
+			case 4: // register_callback_id_excep
+			{
+				org.omg.Messaging.ExceptionHolder _arg0=(org.omg.Messaging.ExceptionHolder)((org.omg.CORBA_2_3.portable.InputStream)_input).read_value ("IDL:omg.org/Messaging/ExceptionHolder:1.0");
+				_out = handler.createReply();
+				register_callback_id_excep(_arg0);
+				break;
+			}
+			case 5: // register_callback_id
+			{
+				_out = handler.createReply();
+				register_callback_id();
+				break;
+			}
+			case 6: // unregister_callback_id_excep
+			{
+				org.omg.Messaging.ExceptionHolder _arg0=(org.omg.Messaging.ExceptionHolder)((org.omg.CORBA_2_3.portable.InputStream)_input).read_value ("IDL:omg.org/Messaging/ExceptionHolder:1.0");
+				_out = handler.createReply();
+				unregister_callback_id_excep(_arg0);
+				break;
+			}
+			case 7: // unregister_callback_name
 			{
 				_out = handler.createReply();
 				unregister_callback_name();

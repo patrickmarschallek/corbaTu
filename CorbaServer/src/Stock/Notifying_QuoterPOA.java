@@ -5,7 +5,7 @@ package Stock;
  * Generated from IDL interface "Notifying_Quoter".
  *
  * @author JacORB IDL compiler V 3.2, 07-Dec-2012
- * @version generated at May 21, 2013 8:33:43 PM
+ * @version generated at May 21, 2013 9:29:04 PM
  */
 
 public abstract class Notifying_QuoterPOA
@@ -15,8 +15,10 @@ public abstract class Notifying_QuoterPOA
 	static private final java.util.HashMap<String,Integer> m_opsHash = new java.util.HashMap<String,Integer>();
 	static
 	{
-		m_opsHash.put ( "unregister_callback_name", Integer.valueOf(0));
-		m_opsHash.put ( "register_callback_name", Integer.valueOf(1));
+		m_opsHash.put ( "unregister_callback_id", Integer.valueOf(0));
+		m_opsHash.put ( "register_callback_id", Integer.valueOf(1));
+		m_opsHash.put ( "unregister_callback_name", Integer.valueOf(2));
+		m_opsHash.put ( "register_callback_name", Integer.valueOf(3));
 	}
 	private String[] ids = {"IDL:Stock/Notifying_Quoter:1.0"};
 	public Stock.Notifying_Quoter _this()
@@ -42,7 +44,39 @@ public abstract class Notifying_QuoterPOA
 			throw new org.omg.CORBA.BAD_OPERATION(method + " not found");
 		switch ( opsIndex.intValue() )
 		{
-			case 0: // unregister_callback_name
+			case 0: // unregister_callback_id
+			{
+			try
+			{
+				int _arg0=_input.read_long();
+				Stock.CallbackHandler _arg1=Stock.CallbackHandlerHelper.read(_input);
+				_out = handler.createReply();
+				unregister_callback_id(_arg0,_arg1);
+			}
+			catch(Stock.InvalidStockException _ex0)
+			{
+				_out = handler.createExceptionReply();
+				Stock.InvalidStockExceptionHelper.write(_out, _ex0);
+			}
+				break;
+			}
+			case 1: // register_callback_id
+			{
+			try
+			{
+				int _arg0=_input.read_long();
+				Stock.CallbackHandler _arg1=Stock.CallbackHandlerHelper.read(_input);
+				_out = handler.createReply();
+				register_callback_id(_arg0,_arg1);
+			}
+			catch(Stock.InvalidStockException _ex0)
+			{
+				_out = handler.createExceptionReply();
+				Stock.InvalidStockExceptionHelper.write(_out, _ex0);
+			}
+				break;
+			}
+			case 2: // unregister_callback_name
 			{
 			try
 			{
@@ -58,7 +92,7 @@ public abstract class Notifying_QuoterPOA
 			}
 				break;
 			}
-			case 1: // register_callback_name
+			case 3: // register_callback_name
 			{
 			try
 			{
