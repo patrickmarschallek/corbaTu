@@ -7,7 +7,7 @@
 *.o
 *.so
 /build/
-//nbproject/
+/nbproject/
 
 # Packages #
 ############
@@ -40,12 +40,15 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+*.classpath
+*.project
 
+*.mf
 *.class
 /nbproject/private/
-/CorbaServer/nbproject/private/
+/CorbaServer/nbproject/
 /CorbaServer/.settings/
-/CorbaClient/nbproject/private/
+/CorbaClient/nbproject/
 /CorbaClient/.settings/
 /CorbaServer/build/
 /CorbaServer/dist/
