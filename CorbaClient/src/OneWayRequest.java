@@ -34,6 +34,7 @@ public class OneWayRequest extends CorbaClientRequest {
 			e.printStackTrace();
 		}
 		
+		System.out.println("Waiting for response...");
 		orb.run();
 		return oneWayResult;
 	}

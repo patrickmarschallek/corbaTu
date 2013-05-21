@@ -5,7 +5,7 @@ package Stock;
  * Generated from IDL interface "Notifying_Quoter".
  *
  * @author JacORB IDL compiler V 3.2, 07-Dec-2012
- * @version generated at May 21, 2013 3:36:39 PM
+ * @version generated at May 21, 2013 8:33:43 PM
  */
 
 public class _Notifying_QuoterStub
@@ -225,6 +225,52 @@ _os.write_string( tmpResult2 );
 			}
 		}
 
+		}
+
+	}
+
+	public void sendc_unregister_callback_name(AMI_Notifying_QuoterHandler ami_handler, java.lang.String stockName, Stock.CallbackHandler handler)
+	{
+		while(true)
+		{
+			try
+			{
+				org.omg.CORBA.portable.OutputStream _os = _request( "unregister_callback_name", true);
+				java.lang.String tmpResult3 = stockName;
+_os.write_string( tmpResult3 );
+				Stock.CallbackHandlerHelper.write(_os,handler);
+				((org.jacorb.orb.Delegate)_get_delegate()).invoke(this, _os, ami_handler);
+				return;
+			}
+			catch( org.omg.CORBA.portable.RemarshalException _rx )
+			{
+			}
+			catch( org.omg.CORBA.portable.ApplicationException _ax )
+			{
+			}
+		}
+
+	}
+
+	public void sendc_register_callback_name(AMI_Notifying_QuoterHandler ami_handler, java.lang.String stockName, Stock.CallbackHandler handler)
+	{
+		while(true)
+		{
+			try
+			{
+				org.omg.CORBA.portable.OutputStream _os = _request( "register_callback_name", true);
+				java.lang.String tmpResult4 = stockName;
+_os.write_string( tmpResult4 );
+				Stock.CallbackHandlerHelper.write(_os,handler);
+				((org.jacorb.orb.Delegate)_get_delegate()).invoke(this, _os, ami_handler);
+				return;
+			}
+			catch( org.omg.CORBA.portable.RemarshalException _rx )
+			{
+			}
+			catch( org.omg.CORBA.portable.ApplicationException _ax )
+			{
+			}
 		}
 
 	}

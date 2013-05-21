@@ -7,8 +7,11 @@ import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
 import org.omg.PortableServer.POA;
 import org.omg.PortableServer.POAHelper;
-
+import Stock.CallbackHandler;
 import Stock.InvalidStockException;
+import Stock.Notifying_Quoter;
+import Stock.Notifying_QuoterHelper;
+import Stock.Notifying_QuoterPOA;
 import Stock.Quoter;
 import Stock.QuoterHelper;
 import Stock.QuoterPOA;
@@ -33,6 +36,15 @@ public class CorbaServer {
 			// get object reference from the servant
 			org.omg.CORBA.Object ref = rootpoa.servant_to_reference(quoterImpl);
 			Quoter href = QuoterHelper.narrow(ref);
+			
+			// create servant and register it with the ORB
+			Notifying_QuoterServant notifyQuoterImpl = new Notifying_QuoterServant();
+			notifyQuoterImpl.generateTestData();
+			notifyQuoterImpl.setORB(orb);
+
+			// get object reference from the servant
+			org.omg.CORBA.Object reftoNotify = rootpoa.servant_to_reference(notifyQuoterImpl);
+			Notifying_Quoter hreftoNotify  = Notifying_QuoterHelper.narrow(reftoNotify);
 
 			// get the root naming context
 			org.omg.CORBA.Object objRef = orb
@@ -45,6 +57,12 @@ public class CorbaServer {
 			String name = "Quoter";
 			NameComponent path[] = ncRef.to_name(name);
 			ncRef.rebind(path, href);
+			
+			// bind the Object Reference in Naming
+			String nameNotifyingQuoter = "Notifying_Quoter";
+			NameComponent pathToNotifyingQuoter[] = ncRef.to_name(nameNotifyingQuoter);
+			ncRef.rebind(pathToNotifyingQuoter, hreftoNotify);
+			
 
 			System.out.println("QuoterServer ready and waiting ...");
 
@@ -112,5 +130,52 @@ class QuoterServant extends QuoterPOA {
 		quotes.add(quote1);
 		quotes.add(quote2);
 	}
-
 }
+	
+	class Notifying_QuoterServant extends Notifying_QuoterPOA {
+		private ORB orb;
+
+		private List<StockQuote> quotes;
+
+		public void setORB(ORB orb_val) {
+			orb = orb_val;
+		}
+		
+		@Override
+		public void register_callback_name(String stockName,
+				CallbackHandler handler) throws InvalidStockException {
+			System.out.println("getQuoteByName " + stockName);
+			for (StockQuote q : quotes) {
+				if (q.name.equals(stockName)) {
+					System.out.println("returning quote");
+					handler.push(q);
+				}
+			}
+		}
+
+		@Override
+		public void unregister_callback_name(String stockName,
+				CallbackHandler handler) throws InvalidStockException {
+			shutdown();
+			
+		}
+		
+	    // implement shutdown() method
+		public void shutdown() {
+			orb.shutdown(false);
+		}
+
+		public void generateTestData() {
+			StockQuote quote = new StockQuote(0, "test0", 1.2);
+			StockQuote quote1 = new StockQuote(1, "test1", 3.4);
+			StockQuote quote2 = new StockQuote(2, "test2", 5.6);
+
+			quotes = new ArrayList();
+
+			quotes.add(quote);
+			quotes.add(quote1);
+			quotes.add(quote2);
+		}
+
+	}
+	

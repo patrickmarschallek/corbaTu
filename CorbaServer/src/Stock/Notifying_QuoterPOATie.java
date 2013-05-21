@@ -6,7 +6,7 @@ import org.omg.PortableServer.POA;
  * Generated from IDL interface "Notifying_Quoter".
  *
  * @author JacORB IDL compiler V 3.2, 07-Dec-2012
- * @version generated at May 21, 2013 3:36:39 PM
+ * @version generated at May 21, 2013 8:33:43 PM
  */
 
 public class Notifying_QuoterPOATie

@@ -5,7 +5,7 @@ package Stock;
  * Generated from IDL interface "Quoter".
  *
  * @author JacORB IDL compiler V 3.2, 07-Dec-2012
- * @version generated at 19.05.2013 14:51:30
+ * @version generated at May 21, 2013 8:33:43 PM
  */
 
 public class _QuoterStub
@@ -136,8 +136,8 @@ public class _QuoterStub
 				try
 				{
 					_os = _request( "getQuoteByName", true);
-					java.lang.String tmpResult1 = stockName;
-_os.write_string( tmpResult1 );
+					java.lang.String tmpResult5 = stockName;
+_os.write_string( tmpResult5 );
 					_is = _invoke(_os);
 					Stock.StockQuote _result = Stock.StockQuoteHelper.read(_is);
 					return _result;
@@ -258,8 +258,8 @@ _os.write_string( tmpResult1 );
 			try
 			{
 				org.omg.CORBA.portable.OutputStream _os = _request( "getQuoteByName", true);
-				java.lang.String tmpResult2 = stockName;
-_os.write_string( tmpResult2 );
+				java.lang.String tmpResult6 = stockName;
+_os.write_string( tmpResult6 );
 				((org.jacorb.orb.Delegate)_get_delegate()).invoke(this, _os, ami_handler);
 				return;
 			}
