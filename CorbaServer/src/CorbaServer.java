@@ -106,7 +106,7 @@ class QuoterServant extends QuoterPOA {
 		StockQuote quote1 = new StockQuote(1, "test1", 3.4);
 		StockQuote quote2 = new StockQuote(2, "test2", 5.6);
 
-		quotes = new ArrayList<>();
+		quotes = new ArrayList();
 
 		quotes.add(quote);
 		quotes.add(quote1);

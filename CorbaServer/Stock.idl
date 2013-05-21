@@ -9,6 +9,22 @@ module Stock
 		double price;
 	};
 	
+	
+	interface CallbackHandler
+	{
+		//Oneway method called by quote server to deliver new quote
+		oneway void push(in StockQuote data);
+	};
+
+	interface Notifying_Quoter
+	{
+		void register_callback_name(in string stockName, in CallbackHandler handler)
+		raises (InvalidStockException);
+		
+		void unregister_callback_name(in string stockName, in CallbackHandler handler)
+		raises (InvalidStockException);
+	};
+	
 	interface Quoter {
 	
 		// Two-way operations to retrieve current stock value.
