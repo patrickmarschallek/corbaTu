@@ -49,6 +49,8 @@ public class OneWayRequest extends CorbaClientRequest {
 			notifyQuoterRef.register_callback_id(id, callback);
 		} catch (InvalidStockException e) {
 			e.printStackTrace();
+
+			return null;
 		}
 		System.out.println("Waiting for response...");
 		while (oneWayResult == null) {
@@ -83,6 +85,8 @@ public class OneWayRequest extends CorbaClientRequest {
 			notifyQuoterRef.register_callback_name(name, callback);
 		} catch (InvalidStockException e) {
 			e.printStackTrace();
+
+			return null;
 		}
 		System.out.println("Waiting for response...");
 		while (oneWayResult == null) {

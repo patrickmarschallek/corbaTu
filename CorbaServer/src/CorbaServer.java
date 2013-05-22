@@ -7,6 +7,7 @@ import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
 import org.omg.PortableServer.POA;
 import org.omg.PortableServer.POAHelper;
+
 import Stock.CallbackHandler;
 import Stock.InvalidStockException;
 import Stock.Notifying_Quoter;
@@ -150,8 +151,10 @@ class QuoterServant extends QuoterPOA {
 					System.out.println("returning quote");
 					handler.push(q);
 					handler._release();
+				return;
 				}
 			}
+		throw new InvalidStockException("Stock not found, name: " + stockName);
 		}
 
 		@Override
@@ -169,9 +172,10 @@ class QuoterServant extends QuoterPOA {
 				if (q.id == stockId) {
 					System.out.println("returning quote");
 					handler.push(q);
+				return;
 				}
 			}
-			
+		throw new InvalidStockException("Stock not found, id: " + stockId);
 		}
 
 		@Override
