@@ -23,6 +23,12 @@ module Stock
 		
 		void unregister_callback_name(in string stockName, in CallbackHandler handler)
 		raises (InvalidStockException);
+		
+		void register_callback_id(in long stockId, in CallbackHandler handler)
+		raises (InvalidStockException);
+		
+		void unregister_callback_id(in long stockId, in CallbackHandler handler)
+		raises (InvalidStockException);
 	};
 	
 	interface Quoter {
