@@ -8,7 +8,7 @@ sh ./buildServer.sh
 sh ./startServer.sh &
 cd ../CorbaClient
 sh ./buildClient.sh
-sh ./startClient.sh 1
+sh ./startClient.sh 1 a
 sh ./startClient.sh 1 b
 sh ./startClient.sh 1 c
 sh ./startClient.sh 1 d

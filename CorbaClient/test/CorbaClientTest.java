@@ -50,7 +50,7 @@ public class CorbaClientTest {
     @Test
     public void testMainA() {
         System.out.println("main a)");
-        String[] args = {id};
+        String[] args = {id, "a"};
         client.main(args);
         assertEquals(id, String.valueOf(CorbaClient.getStockQuote().id));
         assertEquals(name, CorbaClient.getStockQuote().name);
@@ -102,7 +102,7 @@ public class CorbaClientTest {
     @Test
     public void testMainAByString() {
         System.out.println("main a) with String");
-        String[] args = {name};
+        String[] args = {name, "a"};
         client.main(args);
         assertEquals(id, String.valueOf(CorbaClient.getStockQuote().id));
         assertEquals(name, CorbaClient.getStockQuote().name);
