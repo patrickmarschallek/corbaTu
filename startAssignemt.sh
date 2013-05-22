@@ -7,7 +7,6 @@ cd CorbaServer
 sh ./buildServer.sh
 sh ./startServer.sh &
 cd ../CorbaClient
-echo $(pwd)
 sh ./buildClient.sh
 sh ./startClient.sh 1
 sh ./startClient.sh 1 b

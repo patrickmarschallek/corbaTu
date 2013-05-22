@@ -32,7 +32,9 @@ public class CorbaClient {
 			stockQuote = null;
 			CorbaClientRequest request = new SIIRequest(quoterRef);
 
-			if (args[1].equals("b")) {
+			if(args[1].equals("a")){
+				
+			}else if (args[1].equals("b")) {
 				request = new DIIRequest(quoterRef);
 			} else if (args[1].equals("c")) {
 				// Resolve the object reference in naming
@@ -44,6 +46,7 @@ public class CorbaClient {
 			} else if (args[1].equals("d")) {
 				request = new AMIRequest(quoterRef, orb);
 			}
+			
 			stockQuote = request.getStockQuote(args[0]);
 			printQuote(stockQuote);
 

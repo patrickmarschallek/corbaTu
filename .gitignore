@@ -72,3 +72,7 @@ CorbaServer/.settings/org.eclipse.jdt.core.prefs
 CorbaClient/jacorb.properties
 
 CorbaServer/jacorb.properties
+
+jacorb.properties
+
+jacorb.properties
