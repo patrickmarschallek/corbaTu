@@ -1,10 +1,15 @@
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAHelper;
+import org.omg.PortableServer.POAManagerPackage.AdapterInactive;
+
 import Stock.CallbackHandler;
 import Stock.CallbackHandlerPOA;
 import Stock.InvalidStockException;
 import Stock.Notifying_Quoter;
 import Stock.Quoter;
 import Stock.StockQuote;
-import org.omg.CORBA.ORB;
 
 
 public class OneWayRequest extends CorbaClientRequest {
@@ -18,32 +23,77 @@ public class OneWayRequest extends CorbaClientRequest {
 		super(quoter);
 		this.callback = new CallbackHandlerImpl(this)._this(orb);
 		this.notifyQuoterRef = notifyQuoterRef;
+		this.oneWayResult = null;
 		this.orb = orb;
+
 	}
 
 	@Override
 	protected StockQuote getQuoteById(int id) {
+
+		POA rootpoa;
+		try {
+			rootpoa = POAHelper.narrow(orb
+					.resolve_initial_references("RootPOA"));
+
+			rootpoa.the_POAManager().activate();
+		} catch (InvalidName e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AdapterInactive e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		try {
 			notifyQuoterRef.register_callback_id(id, callback);
 		} catch (InvalidStockException e) {
 			e.printStackTrace();
 		}
-		
 		System.out.println("Waiting for response...");
-		orb.run();
+		while (oneWayResult == null) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		// orb.run();
 		return oneWayResult;
 	}
 
 	@Override
 	protected StockQuote getQuoteByName(String name) {
+		POA rootpoa;
+		try {
+			rootpoa = POAHelper.narrow(orb
+					.resolve_initial_references("RootPOA"));
+
+			rootpoa.the_POAManager().activate();
+		} catch (InvalidName e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AdapterInactive e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		try {
 			notifyQuoterRef.register_callback_name(name, callback);
 		} catch (InvalidStockException e) {
 			e.printStackTrace();
 		}
-		
 		System.out.println("Waiting for response...");
-		orb.run();
+		while (oneWayResult == null) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		// orb.run();
 		return oneWayResult;
 	}
 	
