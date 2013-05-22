@@ -1,2 +1,2 @@
 #!/bin/sh
-java -cp ./bin:../lib/* CorbaServer
+jaco -cp ./bin:../lib/* CorbaServer
